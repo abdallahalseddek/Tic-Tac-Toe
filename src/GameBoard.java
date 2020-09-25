@@ -1,15 +1,11 @@
-package alseddiq;
-
 import java.util.*;
 
 public class GameBoard {
+    char [] [] Board = {{' ', '|', ' ', '|', ' '}, {'-', '+', '-', '+', '-', }, {' ', '|', ' ', '|', ' '}, {'-', '+', '-', '+', '-', }, {' ', '|', ' ', '|', ' '}};
+    ArrayList <Integer> player_positions = new ArrayList<>();
+    ArrayList <Integer>  cpu_positions = new ArrayList<>();
 
-    private final char [] [] Board = {{' ', '|', ' ', '|', ' '}, {'-', '+', '-', '+', '-', }, {' ', '|', ' ', '|', ' '}, {'-', '+', '-', '+', '-', }, {' ', '|', ' ', '|', ' '}};
-    private ArrayList <Integer> player_positions = new ArrayList<>();
-    private ArrayList <Integer>  cpu_positions = new ArrayList<>();
-
-
-    private void printBoard(){
+    void printBoard(){
         for (int i=0; i<5; i++){
             for (int j=0; j<5; j++){
                 System.out.print(Board[i][j]);
@@ -18,7 +14,7 @@ public class GameBoard {
         }
     }
 
-    private void players(String player , int playerIndex){
+    void players(String player , int playerIndex){
         char symbol ;
         if (player.equals("player")){
             symbol = 'O';
@@ -39,16 +35,15 @@ public class GameBoard {
             case 9 -> Board[4][4] = symbol;
         }
     }
-
-    private String winner (){
+    String winner (){
         List r1 = Arrays.asList(1, 2, 3);
         List r2 = Arrays.asList(4, 5, 6);
         List r3 = Arrays.asList(7, 8, 9);
         List c1 = Arrays.asList(1, 4, 7);
         List c2 = Arrays.asList(2, 5, 8);
         List c3 = Arrays.asList(3, 6, 9);
-    List cross1 = Arrays.asList(1, 5, 9);
-    List cross2 = Arrays.asList(3, 5, 7);
+        List cross1 = Arrays.asList(1, 5, 9);
+        List cross2 = Arrays.asList(3, 5, 7);
         List <List> win = new ArrayList<>();
         win.add(r1);
         win.add(r2);
@@ -69,8 +64,7 @@ public class GameBoard {
         }
         return " ";
     }
-
-    public void GameFlow(){
+    public  void main(String[] args) {
         printBoard();
         while (true) {
             Scanner input = new Scanner(System.in);
@@ -79,7 +73,7 @@ public class GameBoard {
             while (player_positions.contains(index) ||cpu_positions.contains(player_positions))
             {
                 System.out.println("position token, enter another");
-                 index = input.nextInt();
+                index = input.nextInt();
             }
             players("player", index);
             printBoard();
@@ -103,5 +97,7 @@ public class GameBoard {
             }
         }
 
+
     }
+
 }
